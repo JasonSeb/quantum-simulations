@@ -4,6 +4,10 @@
 
 This code simulates the circuit a quantum computer would use for phase estimation.
 
+Please feel free to set the phase 'phi' and the precision 't' as desired.
+Though keep in mind having more than 8 qubits of precision can rapidly become computationally costly, 
+as simulating qubits and their dynamics is an exponentially expensive task.
+
 Phase estimation is an important protocol used within Shor's algorithm, in quantum 
 solutions to the discrete log problem, and in a few other problems. All such solutions
 are rooted in the Quantum Fourier Transform. For those who are interested, Chapter 5 
@@ -72,8 +76,8 @@ def bit_string_to_fraction(bit_str):
 
 
 if __name__=="__main__":
-    # A phase value 'phi' gives us unique informartion about an eigenvalue of a quantum logic gate, as eig_val = e**(phi*1j*2*pi)
-    # We have 0 <= phi < 1
+    # A phase value 'phi' gives us unique informartion about an eigenvalue of a quantum logic gate, as eig_val = np.exp(phi*1j*2*pi)
+    # The range of our phase is 0 <= phi < 1
     phi = 0.165151
     
     
@@ -81,7 +85,7 @@ if __name__=="__main__":
     # phi = 1/2 + 0/4 + 1/8 + 0/16 + 0/32 + 1/64 + 1/128 is an example that can be represented with 7 bits in this form
     # In general, the phase estimation algorithm returns the best t-bit approximation of 'phi'
     # NOTE: Don't go beyond 8 qubits unless you have patience. Simulating qubits is exponentially expensive, and even 9 qubits can take more than a couple seconds
-    t = 10
+    t = 7
     
     
     # Though it is usually unknown to those performing the algorithm, in this simulation we instantiate the single qubit gate U ourselves.
